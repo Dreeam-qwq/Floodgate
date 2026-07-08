@@ -38,50 +38,15 @@ jobs:
         env:
           BUILD_NUMBER: ${{ steps.release-info.outputs.curentRelease }}
 
-      - name: Archive artifacts (Floodgate Bungee)
-        uses: actions/upload-artifact@v7
+      - name: Archive Artifacts
+        uses: GeyserMC/actions/upload-multi-artifact@master
         if: success()
         with:
-          path: bungee/build/libs/floodgate-bungee.jar
-          archive: false
-          if-no-files-found: error
+          artifacts: |
+            bungee/build/libs/floodgate-bungee.jar
+            spigot/build/libs/floodgate-spigot.jar
+            velocity/build/libs/floodgate-velocity.jar
+            database/mongo/build/libs/floodgate-mongo-database.jar
+            database/mysql/build/libs/floodgate-mysql-database.jar
+            database/sqlite/build/libs/floodgate-sqlite-database.jar
 
-      - name: Archive artifacts (Floodgate Spigot)
-        uses: actions/upload-artifact@v7
-        if: success()
-        with:
-          path: spigot/build/libs/floodgate-spigot.jar
-          archive: false
-          if-no-files-found: error
-
-      - name: Archive artifacts (Floodgate Velocity)
-        uses: actions/upload-artifact@v7
-        if: success()
-        with:
-          path: velocity/build/libs/floodgate-velocity.jar
-          archive: false
-          if-no-files-found: error
-
-      - name: Archive artifacts (Floodgate Mongo Database)
-        uses: actions/upload-artifact@v7
-        if: success()
-        with:
-          path: database/mongo/build/libs/floodgate-mongo-database.jar
-          archive: false
-          if-no-files-found: error
-
-      - name: Archive artifacts (Floodgate MySQL Database)
-        uses: actions/upload-artifact@v7
-        if: success()
-        with:
-          path: database/mysql/build/libs/floodgate-mysql-database.jar
-          archive: false
-          if-no-files-found: error
-
-      - name: Archive artifacts (Floodgate Sqlite Database)
-        uses: actions/upload-artifact@v7
-        if: success()
-        with:
-          path: database/sqlite/build/libs/floodgate-sqlite-database.jar
-          archive: false
-          if-no-files-found: error
